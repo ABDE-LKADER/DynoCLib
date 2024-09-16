@@ -71,7 +71,7 @@ int main() {
     char *str = ft_strdup("Hello, DynoCLib!");
     if (str) {
         printf("%s\n", str);
-        free(str);
+        cleanup();
     }
     return 0;
 }
