@@ -1,12 +1,12 @@
 NAME	=		libar.a
 LIBH	=		DynoCLib.h
-ARRC	=		ar -rc
 
 SRCS	=		$(wildcard Sources/*.c)
 
 OBJS_DIR	=	.Objects/
 OBJS		=	$(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
+ARRC	=		ar -rc
 FLGS	=		cc -Wall -Wextra -Werror
 RM  	=		rm -fr
 
