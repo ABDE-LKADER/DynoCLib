@@ -4,8 +4,10 @@ ARRC	=		ar -rc
 
 SRCS	=		$(wildcard Sources/*.c)
 
+OBJS_DIR	=	.Objects/
+OBJS		=	$(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+
 FLGS	=		cc -Wall -Wextra -Werror
-OBJS	=		$(SRCS:.c=.o)
 RM  	=		rm -fr
 
 GREEN		=	"\033[1;32m"
@@ -29,12 +31,13 @@ finish:
 $(NAME): $(OBJS)
 	@$(ARRC) $(NAME) $(OBJS)
 
-Sources/%.o: Sources/%.c $(LIBH)
+$(OBJS_DIR)%.o: %.c $(LIBH)
+	@mkdir -p $(dir $@)
 	@$(FLGS) -c $< -o $@
 	@printf $(GREEN)"."$(RESET)
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_DIR)
 	@echo $(YELOW)Cleaning up 🧹💫$(RESET)
 
 fclean: clean
